@@ -6,12 +6,12 @@ import {
   import * as Yup from "yup";
   import TextField from '@mui/material/TextField'
   import { useNavigate } from 'react-router-dom'
-  import { API } from '../../global';
+  import { API } from '../global';
   import { useState } from 'react';
   import {Link} from 'react-router-dom';
   import { useContext } from "react";
-  import { AppContext } from "../../contexts/AppState";
-  import { ColorButton } from 'components/login/Login';
+  // import { AppContext } from "../../contexts/AppState";
+  import { ColorButton } from 'components/Login';
   
   
   export function Register() {
@@ -65,8 +65,6 @@ import {
     <div className="wrapper" style={{
   position: "relative",
   textAlign: "center",
-  borderStyle: "solid",
-  borderWidth: "5px",
   display: "inline-block"}}>
     <form  
     onSubmit={handleSubmit}
@@ -75,7 +73,25 @@ import {
     sx={{
       textAlign: 'center',
     }}>
-     Register User
+    <img 
+          src="https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=740"
+          style={{height:"80px",width:"80px", border:"1px solid black",borderRadius:"50%"}}/>
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'Hope Sans',
+              fontWeight: 700,
+              color: 'lightseagreen',
+              textDecoration: 'none',
+            }}
+          >
+            FoodZone
+          </Typography>
     </Typography>
       
       <TextField

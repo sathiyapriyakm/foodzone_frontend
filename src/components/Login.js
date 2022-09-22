@@ -38,9 +38,9 @@ export function Login() {
       .then((content) => {
     if(content.message==="ok"){
         let userData=content.user;
-        // localStorage.setItem("token", content.data);
-        // localStorage.setItem('userEmail', userData.Email);
-        // localStorage.setItem('userType', "student");
+        localStorage.setItem("token", content.data);
+        localStorage.setItem('userEmail', userData.Email);
+        localStorage.setItem('userType', "customer");
         // setToken(content.data)
         return navigate("/")}
         else{

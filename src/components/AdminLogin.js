@@ -7,16 +7,16 @@ import {
   import React,{useContext} from 'react'
   import { useFormik } from 'formik'
   import * as Yup from "yup";
-  import { ColorButton } from 'components/login/Login';
+  import { ColorButton } from 'components/Login';
   import TextField from '@mui/material/TextField'
   import { useNavigate } from 'react-router-dom'
-  import { API } from '../../global';
+  import { API } from '../global';
   import { useState } from 'react';
-  import { AppContext } from "../../contexts/AppState";
+  // import { AppContext } from "../contexts/AppState";
   
   
   export function AdminLogin() {
-    const {setToken } = useContext(AppContext);
+    // const {setToken } = useContext(AppContext);
     const navigate=useNavigate();
     const[errorMsg,setErrorMsg]=useState("");
     // const entry=()=>navigate("/Adminevents");
@@ -35,8 +35,8 @@ import {
               localStorage.setItem("token", content.data);
               localStorage.setItem('userEmail', userData.Email);
               localStorage.setItem('userType', "admin");
-              setToken(content.data)
-              return navigate("/Adminevents")
+              // setToken(content.data)
+              return navigate("/")
             }
               else{
                 setErrorMsg(content.message)
@@ -70,8 +70,6 @@ import {
       style={{
         position: "relative",
         textAlign: "center",
-        borderStyle: "solid",
-        borderWidth: "5px",
         display: "inline-block",
       }}
     >
@@ -82,7 +80,25 @@ import {
     sx={{
       textAlign: 'center',
     }}>
-     Admin Login Details
+     <img 
+          src="https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=740"
+          style={{height:"80px",width:"80px", border:"1px solid black",borderRadius:"50%"}}/>
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'Hope Sans',
+              fontWeight: 700,
+              color: 'lightseagreen',
+              textDecoration: 'none',
+            }}
+          >
+           Admin of FoodZone
+          </Typography>
     </Typography>
       
       <TextField
