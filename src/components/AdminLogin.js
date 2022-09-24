@@ -47,7 +47,7 @@ import {
   
     };
     const initialValues = {
-      Email: 'admin.zen@gmail.com',
+      Email: 'admin.foodzone@gmail.com',
       Password: '1234',
     }
     const userValidationSchema = Yup.object({

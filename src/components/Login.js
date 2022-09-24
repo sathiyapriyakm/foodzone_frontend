@@ -27,7 +27,7 @@ export function Login() {
 
 
   const loginUser = (userDetail) => {
-    fetch(`${API}/login`, {
+    fetch(`${API}/user/login`, {
       method: "POST",
       body: JSON.stringify(userDetail),
       headers: {

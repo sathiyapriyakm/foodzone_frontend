@@ -7,6 +7,7 @@ import {NotFound} from "./components/NotFound.js"
 import {ForgetPassword} from "./components/ForgetPassword.js"
 import {ChangePassword} from "./components/ChangePassword.js"
 import {AdminLogin} from "./components/AdminLogin.js"
+import CategoryDisplay from  "./components/CategoryDisplay.js"
 
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/ForgetPassword" element={<ForgetPassword />} />
         <Route path="/reset-password/:id/:token" element={<ChangePassword />} />
         <Route path="/Adminlogin" element={<AdminLogin />} />
+        <Route path="/food/:category" element={<CategoryDisplay />} />
         <Route path="/" element={<Navigate replace to="/Login" />} />
         <Route path="/404-Page" element={<NotFound />} />
         <Route path="*" element={<Navigate replace to="/404-Page" />} />

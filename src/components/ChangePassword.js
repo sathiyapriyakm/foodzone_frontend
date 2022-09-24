@@ -29,7 +29,7 @@ import "../App.css";
     const authDetail={id:id,token:token}
   
     const getApproval=(authDetail)=>{
-      fetch(`${API}/verifyToken`,{
+      fetch(`${API}/user/verifyToken`,{
       method: "POST",
       body: JSON.stringify(authDetail),
       headers: {
@@ -56,7 +56,7 @@ import "../App.css";
   
     const changePassword =(newPassword) => {
       const newData={Password:newPassword.Password,id:id}
-      fetch(`${API}/changePassword`,{
+      fetch(`${API}/user/changePassword`,{
       method: "PUT",
       body: JSON.stringify(newData),
       headers: {

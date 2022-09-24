@@ -21,7 +21,7 @@ import {
     const login=()=>navigate("/Login");
   
     const regUser =(newUser) => {
-      fetch(`${API}/signup`,{
+      fetch(`${API}/user/signup`,{
       method: "POST",
       body: JSON.stringify(newUser),
       headers: {

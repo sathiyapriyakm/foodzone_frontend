@@ -21,7 +21,7 @@ import "../App.css";
     const[errorMsg,setErrorMsg]=useState("");
   
     const forgetPassword =(emailDetail) => {
-      fetch(`${API}/forgetPassword`,{
+      fetch(`${API}/user/forgetPassword`,{
       method: "POST",
       body: JSON.stringify(emailDetail),
       headers: {

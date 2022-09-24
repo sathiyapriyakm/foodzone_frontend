@@ -5,6 +5,7 @@ export const sliderItems = [
       title: "DELICIOUS BURGER",
       desc: "Get flat 30% offer and buy now for RS.999",
       bg: "f5fafd",
+      cat: "burger",
     },
     {
       id: 2,
@@ -12,6 +13,7 @@ export const sliderItems = [
       title: "CHEESY PIZZA",
       desc: "Get flat 50% offer and buy now for RS.799",
       bg: "fcf1ed",
+      cat: "pizza",
     },
     {
       id: 3,
@@ -19,6 +21,7 @@ export const sliderItems = [
       title: "FRESH SEA FISH",
       desc: "Get flat 30% offer and buy now for RS.1299",
       bg: "fbf0f4",
+      cat: "sea food",
     },
   ];
 
