@@ -29,6 +29,7 @@ function App() {
         <Route path="/404-Page" element={<NotFound />} />
         <Route path="*" element={<Navigate replace to="/404-Page" />} />
       </Routes>
+      {/* appstate not required here */}
       {/* </Appstate> */}
     </div>
   );
