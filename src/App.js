@@ -12,8 +12,6 @@ import CategoryDisplay from  "./components/CategoryDisplay.js"
 
 
 function App() {
-
-
   return (
     <div className="App">
 {/* <Appstate> */}
