@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"name": "Momo Front end",
+		"path": "../../.."
+	},
+	{
+		"name": "Momo Back end",
+		"path": "../../../../Momo Back end"
+	}
+],
+  "settings": {}
+}

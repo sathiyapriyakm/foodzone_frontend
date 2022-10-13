@@ -1,157 +1,162 @@
-import {
-    Typography,
-  } from '@mui/material'
-  import React from 'react'
-  import { useFormik } from 'formik'
-  import * as Yup from "yup";
-  import TextField from '@mui/material/TextField'
-  import { useNavigate } from 'react-router-dom'
-  import { API } from '../global';
-  import { useState } from 'react';
-  import {Link} from 'react-router-dom';
-  import { useContext } from "react";
-  // import { AppContext } from "../../contexts/AppState";
-  import { ColorButton } from 'components/Login';
-  
-  
-  export function Register() {
-    
-    const navigate=useNavigate();
-    const[errorMsg,setErrorMsg]=useState("");
-    const login=()=>navigate("/Login");
-  
-    const regUser =(newUser) => {
-      fetch(`${API}/user/signup`,{
-      method: "POST",
-      body: JSON.stringify(newUser),
-      headers: {
-        "Content-Type" : "application/json",
-      },
-    }).then((data)=>data.json())
-    .then((data1)=>{
-        if(data1.message==="successful Signup"){
-            login();
-          }
-        else {
-            setErrorMsg(data1.message);
-        }
-    });
-    
-  
-    };
-    const initialValues = {
-      FirstName: '',
-      LastName: '',
-      Email: '',
-      Password: '',
-    }
-    const userValidationSchema = Yup.object({
-        FirstName: Yup.string().required('Required'),
-        LastName: Yup.string().required('Required'),
-        Email: Yup.string().email("Must be a valid email").required('Required'),
-        Password: Yup.string().required('Required').min(8),
-    })
-    
-    const {handleBlur,handleChange,handleSubmit,values,errors,touched}=useFormik({
-      initialValues:initialValues,
-      validationSchema:userValidationSchema ,
-      onSubmit:(newUser)=>{
-        setErrorMsg("");
-        regUser(newUser);
-      },
-    });
-    
-    return <div className="add-user-container" >
-    <div className="wrapper" style={{
-  position: "relative",
-  textAlign: "center",
-  display: "inline-block"}}>
-    <form  
-    onSubmit={handleSubmit}
-    className="add-user-form" >
-      <Typography variant="h4" pb={2}
-    sx={{
-      textAlign: 'center',
-    }}>
-    <img 
-          src="https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=740"
-          style={{height:"80px",width:"80px", border:"1px solid black",borderRadius:"50%"}}/>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'Hope Sans',
-              fontWeight: 700,
-              color: 'lightseagreen',
-              textDecoration: 'none',
-            }}
-          >
-            FoodZone
-          </Typography>
-    </Typography>
-      
-      <TextField
-      className="add-user-name"
-      label="First Name"
-      type="text"
-      value={values.FirstName} 
-      name="FirstName"
-      onChange={handleChange}
-      onBlur={handleBlur}
-      error={touched.FirstName&&errors.FirstName?true:false}
-      helperText={touched.FirstName&&errors.FirstName?errors.FirstName:""}
-      />
-      <TextField
-      className="add-user-name"
-      label="Last Name"
-      type="text"
-      value={values.LastName} 
-      name="LastName"
-      onChange={handleChange}
-      onBlur={handleBlur}
-      error={touched.LastName&&errors.LastName?true:false}
-      helperText={touched.LastName&&errors.LastName?errors.LastName:""}
-      />
-      <TextField
-      className="add-user-name"
-      label="Email"
-      type="Email"
-      value={values.Email} 
-      name="Email"
-      onChange={handleChange}
-      onBlur={handleBlur}
-      error={touched.Email&&errors.Email?true:false}
-      helperText={touched.Email&&errors.Email?errors.Email:""}
-      />
-      <TextField
-      className="add-user-name"
-      label="Password"
-      type="password"
-      value={values.Password} 
-      name="Password"
-      onChange={handleChange}
-      onBlur={handleBlur}
-      error={touched.Password&&errors.Password?true:false}
-      helperText={touched.Password&&errors.Password?errors.Password:""}
-      />
-       <ColorButton className="add-user-btn" 
-      type="submit"
-      variant="contained">SignUp</ColorButton>
-      <div className="text-center" style={{color:"red"}}>
-    {errorMsg}
+import React from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import "./css/register.css";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { string } from "yup";
+import { useNavigate } from "react-router-dom";
+import { submitRegistration } from "../services/authService";
+function Register() {
+  const navigate = useNavigate();
+  const formvalidation = yup.object({
+    firstname: string().required().min(2),
+    lastname: string().required().min(2),
+    phone: string().required().min(10),
+    username: string().email().required(),
+    address: string().required().min(30),
+    password: string().required().min(6),
+  });
+
+  const {
+    formik,
+    values,
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    touched,
+    errors,
+    setFieldError,
+  } = useFormik({
+    initialValues: {
+      firstname: "",
+      lastname: "",
+      phone: "",
+      username: "",
+      address: "",
+      password: "",
+    },
+    validationSchema: formvalidation,
+    onSubmit: async (values) => {
+      const response = await submitRegistration(values);
+      if (!response.success) {
+        setFieldError("firstname", response.message);
+      } else {
+        navigate("/registrationsuccess");
+      }
+    },
+  });
+
+  return (
+    <div className="registerwrapper">
+      <h3>Register to use our services</h3>
+      <Form onSubmit={handleSubmit}>
+        {touched.firstname && errors.firstname ? (
+          <div className="error">{errors.firstname}</div>
+        ) : (
+          ""
+        )}
+        <Form.Group className="mb-3" controlId="formfirstname">
+          <Form.Label>First Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="First Name"
+            name="firstname"
+            value={values.firstname}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+        </Form.Group>
+        {touched.lastname && errors.lastname ? (
+          <div className="error">{errors.lastname}</div>
+        ) : (
+          ""
+        )}
+        <Form.Group className="mb-3" controlId="lastname">
+          <Form.Label>Last Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Last name"
+            name="lastname"
+            value={values.lastname}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+        </Form.Group>
+        {touched.phone && errors.phone ? (
+          <div className="error">{errors.phone}</div>
+        ) : (
+          ""
+        )}
+        <Form.Group className="mb-3" controlId="phone">
+          <Form.Label>Phone</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter phone number"
+            name="phone"
+            value={values.phone}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+        </Form.Group>
+        {touched.username && errors.username ? (
+          <div className="error">{errors.username}</div>
+        ) : (
+          ""
+        )}
+        <Form.Group className="mb-3" controlId="email">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            name="username"
+            value={values.username}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+        </Form.Group>
+        {touched.address && errors.address ? (
+          <div className="error">{errors.address}</div>
+        ) : (
+          ""
+        )}
+        <Form.Group className="mb-3" controlId="address">
+          <Form.Label> address</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter address"
+            name="address"
+            value={values.address}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+        </Form.Group>
+        {touched.password && errors.password ? (
+          <div className="error">{errors.password}</div>
+        ) : (
+          ""
+        )}
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+        </Form.Group>
+        <Button
+          variant="primary"
+          style={{ backgroundColor: "#00005c" }}
+          type="submit"
+        >
+          Submit
+        </Button>
+      </Form>
     </div>
-    <div className="text-center" style={{color:"blue"}}>
-      <Link to="/Login">Login!</Link>
-      <br/>
-      <br/>
-     <Link to="/ForgetPassword">Forget Password?</Link>
-    </div>
-    </form> 
-  </div>
-  </div>;
-  }
-  
+  );
+}
+
+export default Register;

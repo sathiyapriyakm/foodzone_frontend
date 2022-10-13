@@ -1,159 +1,106 @@
-import { Typography, Button } from "@mui/material";
-import React ,{useContext} from "react";
+import React from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import { useFormik } from "formik";
-import * as Yup from "yup";
-import TextField from "@mui/material/TextField";
+import * as yup from "yup";
+import "./css/login.css";
+import { requestLogin } from "../services/authService.js";
 import { useNavigate } from "react-router-dom";
-import { API } from "../global";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { styled } from "@mui/material/styles";
-import { purple } from "@mui/material/colors";
-// import { AppContext } from "../../contexts/AppState";
+import { useDispatch } from "react-redux";
 
-export const ColorButton = styled(Button)(({ theme }) => ({
-  color: theme.palette.getContrastText(purple[500]),
-  background:
-    "linear-gradient(124deg, rgba(131,58,180,1) 0%, rgba(165,50,138,1) 50%, rgba(170,49,132,1) 75%, rgba(192,44,105,1) 100%);",
-  "&:hover": {
-    backgroundColor: purple[700],
-  },
-}));
+import { setUser } from "../features/auth/authSlice.js";
 
-export function Login() {
-  // const {setToken } = useContext(AppContext);
+function Login() {
   const navigate = useNavigate();
-  const [errorMsg, setErrorMsg] = useState("");
+  const dispatch = useDispatch();
 
+  const handleLogin = async (values) => {
+    const response = await requestLogin(values);
 
-  const loginUser = (userDetail) => {
-    fetch(`${API}/user/login`, {
-      method: "POST",
-      body: JSON.stringify(userDetail),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((content) => {
-    if(content.message==="ok"){
-        let userData=content.user;
-        localStorage.setItem("token", content.data);
-        localStorage.setItem('userEmail', userData.Email);
-        localStorage.setItem('userType', "customer");
-        // setToken(content.data)
-        return navigate("/")}
-        else{
-          setErrorMsg(content.message)
-        }
-      })
-      .catch((err) => console.error);
+    if (!response.success) {
+      setFieldError("username", response.message);
+    } else {
+      dispatch(setUser(response));
+      if (response.user.userType != "admin") {
+        navigate("/user/productList");
+      } else {
+        navigate("/user/dashboard");
+      }
+    }
   };
-  const initialValues = {
-    Email: "",
-    Password: "",
-  };
-  const userValidationSchema = Yup.object({
-    Email: Yup.string().email().required("Required"),
-    Password: Yup.string().required("Required"),
+  const loginvalidationschema = yup.object({
+    username: yup.string().email().required("Please enter valid email address"),
+    password: yup.string().required("please enter your password"),
   });
 
-  const { handleBlur, handleChange, handleSubmit, values, errors, touched } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: userValidationSchema,
-      onSubmit: (userDetail) => {
-        setErrorMsg("");
-        loginUser(userDetail);
-      },
-    });
+  const {
+    formik,
+    handleSubmit,
+    values,
+    handleChange,
+    handleBlur,
+    touched,
+    errors,
+    setFieldError,
+  } = useFormik({
+    initialValues: { username: "", password: "" },
+    validationSchema: loginvalidationschema,
+    onSubmit: (values) => {
+      handleLogin(values);
+    },
+  });
 
   return (
-    <div className="add-user-container">
-      <div
-        className="wrapper"
-        style={{
-          position: "relative",
-          textAlign: "center",
-          display: "inline-block",
-        }}
-      >
-        <form onSubmit={handleSubmit} className="add-user-form">
-          <Typography
-            variant="h4"
-            pb={2}
-            sx={{
-              textAlign: "center",
-            }}
-          >
-            <img 
-          src="https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=740"
-          style={{height:"80px",width:"80px", border:"1px solid black",borderRadius:"50%"}}/>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'Hope Sans',
-              fontWeight: 700,
-              color: 'lightseagreen',
-              textDecoration: 'none',
-            }}
-          >
-            FoodZone
-          </Typography>
-          </Typography>
-
-          <TextField
-            className="add-user-name"
-            label="Email"
-            type="Email"
-            value={values.Email}
-            name="Email"
+    <div className="loginwrapper">
+      <h3>Login</h3>
+      {touched.username && errors.username ? (
+        <div className="error">{errors.username}</div>
+      ) : (
+        ""
+      )}
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            name="username"
+            value={values.username}
             onChange={handleChange}
             onBlur={handleBlur}
-            error={touched.Email && errors.Email ? true : false}
-            helperText={touched.Email && errors.Email ? errors.Email : ""}
-          />
-          <TextField
-            className="add-user-name"
-            label="Password"
+            required
+          />{" "}
+        </Form.Group>
+        {touched.password && errors.password ? (
+          <div className="error">{errors.password}</div>
+        ) : (
+          ""
+        )}
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
             type="password"
-            value={values.Password}
-            name="Password"
+            placeholder="Password"
+            name="password"
+            value={values.password}
             onChange={handleChange}
             onBlur={handleBlur}
-            error={touched.Password && errors.Password ? true : false}
-            helperText={
-              touched.Password && errors.Password ? errors.Password : ""
-            }
           />
-          <ColorButton
-            className="add-user-btn"
-            type="submit"
-            variant="contained"
+        </Form.Group>
+        <div className="loginbtn-grp">
+          <Button variant="success" type="submit">
+            Submit
+          </Button>
+          <Button
+            variant="outline-danger"
+            onClick={() => navigate("/forgotpassword")}
           >
-            Login
-          </ColorButton>
-          <div className="text-center" style={{ color: "red" }}>
-            {errorMsg}
-          </div>
-          <div className="text-center" style={{ color: "blue" }}>
-            <Link to="/Register">Create Account!</Link>
-            <br />
-            <br />
-            <Link to="/ForgetPassword">Forget Password?</Link>
-            <br />
-            <br />
-            <Link to="/Adminlogin" style={{ color: "green", fontSize: "25px" }}>
-              Login as Admin
-            </Link>
-          </div>
-        </form>
-      </div>
+            reset Password
+          </Button>
+        </div>
+      </Form>
     </div>
   );
 }
+
+export default Login;
