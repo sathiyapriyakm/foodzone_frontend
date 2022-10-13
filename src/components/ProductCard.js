@@ -30,7 +30,7 @@ function ProductCard({ product }) {
           </ListGroup>
           {user && user.user.userType != "admin" ? (
             <Button
-              variant="primary"
+              variant="warning"
               onClick={() => {
                 dispatch(
                   addToCart({

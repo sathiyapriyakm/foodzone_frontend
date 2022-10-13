@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
-import Footer from "./components/Footer";
 import ForgotPassword from "./components/ForgotPassword.js";
 import HeaderComp from "./components/HeaderComp.js";
 import Login from "./components/Login";

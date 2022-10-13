@@ -44,19 +44,21 @@ function HeaderComp() {
     }
   };
   return (
-    <Navbar className="header">
+    <Navbar collapseOnSelect expand="lg" fixed="top" className="sticky-nav header">
       <Container>
-        <Navbar.Brand>Momo King</Navbar.Brand>
+        <Navbar.Brand>Food Zone</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">
           {user && (
             <Nav.Link onClick={() => navigate("/user/productList")}>
-              View Momos
+              categories
             </Nav.Link>
           )}
 
           {user && user.user.userType != "admin" ? (
             <Nav.Link onClick={() => navigate("/user/customerOrderView")}>
-              Open Orders
+              Orders
             </Nav.Link>
           ) : // <Nav.Link onClick={() => navigate("/user/dashboard")}>
           //   Dashboard
@@ -68,7 +70,6 @@ function HeaderComp() {
             </Nav.Link>
           ) : null}
         </Nav>
-        <Navbar.Collapse className="justify-content-end">
           <Nav>
             {!user ? (
               <>
@@ -79,7 +80,7 @@ function HeaderComp() {
               </>
             ) : (
               <>
-                <Navbar.Text>Welcome, {user.user.name}</Navbar.Text>
+                <Navbar.Text>{user.user.name}</Navbar.Text>
                 <Nav.Link onClick={() => handleLogout()} disabled={isLoading}>
                   Logout
                 </Nav.Link>
@@ -88,12 +89,12 @@ function HeaderComp() {
           </Nav>
           {user && user.user.userType != "admin" ? (
             <Button
-              variant="success"
+              variant="warning"
               onClick={() => navigate("/user/cart")}
               disabled={cart.length < 1}
             >
               <Cart4 className="cartIcon" color="white" size={24} />{" "}
-              <Badge bg="danger">{getTotalQuantity() || 0}</Badge>
+              <Badge bg="info">{getTotalQuantity() || 0}</Badge>
             </Button>
           ) : (
             <></>
