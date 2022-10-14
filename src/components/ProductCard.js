@@ -26,7 +26,7 @@ function ProductCard({ product }) {
           <Card.Title>{product.title}</Card.Title>
           <Card.Text>{product.description}</Card.Text>
           <ListGroup className="list-group-flush">
-            <ListGroup.Item>Rs.{product.price}</ListGroup.Item>
+            <ListGroup.Item style={{color:"green",fontWeight:"700"}}>Rs.{product.price}</ListGroup.Item>
           </ListGroup>
           {user && user.user.userType != "admin" ? (
             <Button

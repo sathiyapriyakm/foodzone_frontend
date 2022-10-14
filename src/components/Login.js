@@ -88,14 +88,14 @@ function Login() {
           />
         </Form.Group>
         <div className="loginbtn-grp">
-          <Button variant="success" type="submit">
+          <Button variant="info" type="submit">
             Submit
           </Button>
           <Button
-            variant="outline-danger"
+            variant="warning"
             onClick={() => navigate("/forgotpassword")}
           >
-            reset Password
+            Forget Password
           </Button>
         </div>
       </Form>

@@ -46,7 +46,11 @@ function HeaderComp() {
   return (
     <Navbar collapseOnSelect expand="lg" fixed="top" className="sticky-nav header">
       <Container>
-        <Navbar.Brand>Food Zone</Navbar.Brand>
+        <Navbar.Brand>
+        {/* <img 
+          src="https://img.freepik.com/premium-vector/smiling-chef-cartoon-character_8250-10.jpg?w=740"
+          style={{height:"40px",width:"40px", border:"1px solid black",borderRadius:"50%",marginRight:"5px"}}/> */}
+          Food Zone</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">
@@ -80,7 +84,7 @@ function HeaderComp() {
               </>
             ) : (
               <>
-                <Navbar.Text>{user.user.name}</Navbar.Text>
+                <Navbar.Text style={{color:"yellow",fontWeight:"500"}}>{user.user.name}</Navbar.Text>
                 <Nav.Link onClick={() => handleLogout()} disabled={isLoading}>
                   Logout
                 </Nav.Link>

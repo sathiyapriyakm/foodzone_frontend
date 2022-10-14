@@ -98,7 +98,7 @@ function ResetPassword() {
                 />
               </Form.Group>
               <div className="loginbtn-grp">
-                <Button variant="success" type="submit">
+                <Button variant="warning" type="submit">
                   Reset Password
                 </Button>
               </div>
@@ -109,9 +109,9 @@ function ResetPassword() {
         <>
           <div className="successResponse">
             <h2>password updated!</h2>
-            <h4>your password has been changed successfully.</h4>
+            <h4>Password changed successfully</h4>
             <h4>
-              use your new password to <Link to="/login">log in</Link>
+            <Link to="/login">Login with new password</Link>
             </h4>
           </div>
         </>

@@ -6,7 +6,7 @@ function Footer() {
   return (
     <div>
       <div className="footerDiv">
-        Developed with <HeartFill color="white" /> by Momo King
+        Prepared and Delivered with <HeartFill color="white" /> by Food Zone 
       </div>
     </div>
   );

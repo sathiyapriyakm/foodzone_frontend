@@ -53,7 +53,7 @@ function ForgotPassword() {
               ""
             )}
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label> Registered Email address</Form.Label>
               <Form.Control
                 name="email"
                 label="enter email"
@@ -63,10 +63,10 @@ function ForgotPassword() {
                 onBlur={handleBlur}
               />{" "}
             </Form.Group>
-            <h6>We'll send a link to reset your password.</h6>
+            {/* <h6>We'll send a link to reset your password.</h6> */}
 
             <div className="loginbtn-grp">
-              <Button variant="primary" type="submit" disabled={isdisabled}>
+              <Button variant="warning" type="submit" disabled={isdisabled}>
                 Send verification link
                 <Send className="cartIcon" color="white" size={24} />{" "}
               </Button>
