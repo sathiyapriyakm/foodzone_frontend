@@ -1,15 +1,24 @@
-import React from "react";
+import React,{useState} from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import itemImg from "../components/momo.jpg";
+// import itemImg from "../components/momo.jpg";
 import { addToCart } from "../features/cartSlice";
 
 function ProductCard({ product }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
 
   return (
     <div className="cardwrapper">
@@ -18,9 +27,14 @@ function ProductCard({ product }) {
         <Card.Img
           className="momoImg"
           variant="top"
-          src={itemImg}
+          src={product.image}
           height={80}
           width={50}
+          style={{
+            transform: isHovering ? "scale(1.1)": '',
+          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         />
         <Card.Body>
           <Card.Title>{product.title}</Card.Title>
@@ -39,6 +53,11 @@ function ProductCard({ product }) {
                 );
                 toast.success("Item added to cart Successfully");
               }}
+              style={{
+                backgroundColor: isHovering ? 'green' : '',
+              }}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               Add to Cart
             </Button>

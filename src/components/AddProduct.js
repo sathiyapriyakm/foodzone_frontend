@@ -18,6 +18,7 @@ function AddProduct() {
   const { user } = useSelector((state) => state.auth);
   const formvalidation = yup.object({
     title: string().required("Enter title of product").min(4),
+    image: string().required("Provide image of the product").min(10),
     description: string().required("Enter description of product").min(10),
     price: string().required("Enter Momo price").min(2).max(4),
   });
@@ -48,6 +49,7 @@ function AddProduct() {
   } = useFormik({
     initialValues: {
       title: "",
+      image:"",
       description: "",
       price: "",
     },
@@ -82,6 +84,27 @@ function AddProduct() {
             />
           </Col>
         </Form.Group>
+        {touched.image && errors.image ? (
+          <div className="error">{errors.image}</div>
+        ) : (
+          ""
+        )}
+        <Form.Group as={Row} className="mb-3" controlId="image">
+          <Form.Label column sm={4}>
+            Product Image
+          </Form.Label>
+          <Col sm={8}>
+            <Form.Control
+              type="text"
+              placeholder="Product Image"
+              name="image"
+              value={values.image}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+          </Col>
+        </Form.Group>
+
         {touched.description && errors.description ? (
           <div className="error">{errors.description}</div>
         ) : (
@@ -112,12 +135,12 @@ function AddProduct() {
 
         <Form.Group as={Row} className="mb-3" controlId="price">
           <Form.Label column sm={4}>
-            Momo Price
+            Product Price
           </Form.Label>
           <Col sm={8}>
             <Form.Control
               type="text"
-              placeholder="Enter price of momos"
+              placeholder="Price of product"
               name="price"
               value={values.price}
               onChange={handleChange}
