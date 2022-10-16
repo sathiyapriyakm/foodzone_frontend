@@ -23,28 +23,28 @@ function Cart() {
   const [orderAmount, setOrderAmount] = useState(0);
   const [ordres, setOrders] = useState([]); //to set orders
 
-  const initializeRazorpay = () => {
-    return new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+  // const initializeRazorpay = () => {
+  //   return new Promise((resolve) => {
+  //     const script = document.createElement("script");
+  //     script.src = "https://checkout.razorpay.com/v1/checkout.js";
 
-      script.onload = () => {
-        resolve(true);
-      };
-      script.onerror = () => {
-        resolve(false);
-      };
+  //     script.onload = () => {
+  //       resolve(true);
+  //     };
+  //     script.onerror = () => {
+  //       resolve(false);
+  //     };
 
-      document.body.appendChild(script);
-    });
-  };
+  //     document.body.appendChild(script);
+  //   });
+  // };
   const handleCheckout = async () => {
-    const res = await initializeRazorpay();
+    // const res = await initializeRazorpay();
 
-    if (!res) {
-      alert("Razorpay SDK Failed to load");
-      return;
-    }
+    // if (!res) {
+    //   alert("Razorpay SDK Failed to load");
+    //   return;
+    // }
     try {
       setLoading(true);
       const response = await createPaymentOrder({ amount: total }, user.token);
@@ -171,4 +171,3 @@ function Cart() {
 }
 
 export default Cart;
-  
