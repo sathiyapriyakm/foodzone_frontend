@@ -20,8 +20,8 @@ function Cart() {
   const { total } = useSelector((state) => state.cart) || [];
   const { user } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState(false);
-  const [orderAmount, setOrderAmount] = useState(0);
-  const [ordres, setOrders] = useState([]); //to set orders
+  // const [orderAmount, setOrderAmount] = useState(0);
+  // const [ordres, setOrders] = useState([]); //to set orders
 
   // const initializeRazorpay = () => {
   //   return new Promise((resolve) => {
