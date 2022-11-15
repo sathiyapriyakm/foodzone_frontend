@@ -11,6 +11,7 @@ function ProductCard({ product }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const [isHovering, setIsHovering] = useState(false);
+  const [isHoveringAddCart, setIsHoveringAddCart] = useState(false);
 
   const handleMouseEnter = () => {
     setIsHovering(true);
@@ -18,6 +19,13 @@ function ProductCard({ product }) {
 
   const handleMouseLeave = () => {
     setIsHovering(false);
+  };
+  const handleMouseEnterAddCart = () => {
+    setIsHoveringAddCart(true);
+  };
+
+  const handleMouseLeaveAddCart = () => {
+    setIsHoveringAddCart(false);
   };
 
   return (
@@ -54,10 +62,10 @@ function ProductCard({ product }) {
                 toast.success("Item added to cart Successfully");
               }}
               style={{
-                backgroundColor: isHovering ? 'green' : '',
+                backgroundColor: isHoveringAddCart ? 'green' : '',
               }}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={handleMouseEnterAddCart}
+              onMouseLeave={handleMouseLeaveAddCart}
             >
               Add to Cart
             </Button>

@@ -17,7 +17,7 @@ const cartSlice = createSlice({
         state.cart.push({ ...action.payload, quantity: 1 });
       }
 
-      state.total += Number(action.payload.product.price) * 1;
+      state.total += Number(action.payload.product.price) ;
     },
     // incrementQuantity: (state, action) => {
     //   const item = state.cart.find((item) => item._id === action.payload);

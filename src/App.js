@@ -56,7 +56,7 @@ function App() {
             path="productList"
             element={
               <PrivateRoute>
-                {" "}
+                {/* {" "} */}
                 <CustomerProductList />
               </PrivateRoute>
             }
