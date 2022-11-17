@@ -4,7 +4,6 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-// import itemImg from "../components/momo.jpg";
 import { addToCart } from "../features/cartSlice";
 
 function ProductCard({ product }) {
@@ -33,7 +32,7 @@ function ProductCard({ product }) {
       {" "}
       <Card style={{ width: "18rem" }}>
         <Card.Img
-          className="momoImg"
+          className="foodZoneImg"
           variant="top"
           src={product.image}
           height={80}

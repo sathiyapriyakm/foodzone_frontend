@@ -9,7 +9,7 @@ import OrdersPage from "./OrdersPage";
 function Dashboard() {
   return (
     <div className="dashboardwrapper">
-      <h2>Momo's Dashboard</h2>
+      <h2>Dashboard</h2>
       <Tabs
         defaultActiveKey="products"
         id="justify-tab-example"

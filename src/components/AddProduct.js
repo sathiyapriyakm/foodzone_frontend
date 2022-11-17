@@ -20,7 +20,7 @@ function AddProduct() {
     title: string().required("Enter title of product").min(4),
     image: string().required("Provide image of the product").min(10),
     description: string().required("Enter description of product").min(10),
-    price: string().required("Enter Momo price").min(2).max(4),
+    price: string().required("Enter product price").min(2).max(4),
   });
 
   const insertProduct = async (values) => {

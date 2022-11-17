@@ -1,12 +1,12 @@
 {
   "folders": [
 	{
-		"name": "Momo Front end",
+		"name": "foodZone Front end",
 		"path": "../../.."
 	},
 	{
-		"name": "Momo Back end",
-		"path": "../../../../Momo Back end"
+		"name": "foodZone Back end",
+		"path": "../../../../foodZone Back end"
 	}
 ],
   "settings": {}

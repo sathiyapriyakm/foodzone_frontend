@@ -1,11 +1,11 @@
 # [foodzone](https://foodzone.netlify.app/) - Website
 
-  [Front End](https://github.com/vishal-coder/Momo-Ordering-App-Frontend)
-  [Back End](https://github.com/vishal-coder/Momo-Ordering-App-Backend)
+  [Front End](https://github.com/vishal-coder/foodZone-Ordering-App-Frontend)
+  [Back End](https://github.com/vishal-coder/foodZone-Ordering-App-Backend)
 
 ## Brief Description
 
-- foodzone website is a  online momo ordering website where user can view different varient of momos and order as per choice.
+- foodzone website is a  online foodZone ordering website where user can view different varient of foodZones and order as per choice.
 Once the payment through RazorPay payment Gateway is done admin gets notification about new order
 
 - Admin can add new product as well as edit and delete exisitng product
@@ -26,13 +26,13 @@ Select Net Banking -> select any Bank -> click on Pay button -> click on success
 ## Features
 
 ### `User features`
-  - User can view momo list only after logging in 
-  - User can add different momos to cart and can remote any or all momos from cart
+  - User can view foodZone list only after logging in 
+  - User can add different foodZones to cart and can remote any or all foodZones from cart
   - Once payment is done order is confirmed and user can see latest status of order in my orders page  
   
 
 ### `Admin features`
-  - Admin Can add new product/Momo
+  - Admin Can add new product/foodZone
   - Edit or Delete exisitng product
   - Can update status of order
  
@@ -49,8 +49,8 @@ Select Net Banking -> select any Bank -> click on Pay button -> click on success
 - Homepage / Login Page
 ![Homepage](/ScreenShots/Home.JPG "Homepage")
 
-- Momos List 
-![Momos List ](/ScreenShots/MomoList.JPG "Momos List ")
+- foodZones List 
+![foodZones List ](/ScreenShots/foodZoneList.JPG "foodZones List ")
 
 - Customer Orders Page
 ![Customer Orders Page](/ScreenShots/CustomerOrdersPage.JPG "Customer Orders Page")
@@ -61,8 +61,8 @@ Select Net Banking -> select any Bank -> click on Pay button -> click on success
 - Payment
 ![Payment](/ScreenShots/Payment.JPG "Payment")
 
-- Admin Add Momo 
-![Add Momo ](/ScreenShots/AddMomo.JPG "Add Momo ")
+- Admin Add foodZone 
+![Add foodZone ](/ScreenShots/AddfoodZone.JPG "Add foodZone ")
 
 - Admin Pending Orders View
 ![Admin Pending Orders](/ScreenShots/AdminPendingOrders.JPG "Admin Pending Orders")
