@@ -1,12 +1,12 @@
-# [foodzone](https://foodzone.netlify.app/) - Website
+# [foodzone](https://courageous-vacherin-7d1d78.netlify.app) - Website
 
-  [Front End](https://github.com/vishal-coder/foodZone-Ordering-App-Frontend)
-  [Back End](https://github.com/vishal-coder/foodZone-Ordering-App-Backend)
+  [Front End](https://github.com/sathiyapriyakm/foodzone_frontend)
+  [Back End](https://github.com/sathiyapriyakm/foodzone_backend)
 
 ## Brief Description
 
-- foodzone website is a  online foodZone ordering website where user can view different varient of foodZones and order as per choice.
-Once the payment through RazorPay payment Gateway is done admin gets notification about new order
+- foodzone website is a  online food ordering website where user can view different varient of food items and can order as per choice.
+Once the payment through RazorPay payment Gateway is done admin gets notification about new order.
 
 - Admin can add new product as well as edit and delete exisitng product
 - Admin can change the status of order 
@@ -19,15 +19,15 @@ Select Net Banking -> select any Bank -> click on Pay button -> click on success
 ### `Short tech summary`
   - Implemented authentication,authorization using Json Web Token for login,along with CRUD features.
   - Integrated payment gateway by RazorPay API to collect service and display transaction status.
-  - Implemented [MongoDB ChangeStream](https://www.mongodb.com/docs/manual/changeStreams) for push notification to admin about payments
+  - Used Socket.io for notification to admin about payments.
   
 
 
 ## Features
 
 ### `User features`
-  - User can view foodZone list only after logging in 
-  - User can add different foodZones to cart and can remote any or all foodZones from cart
+  - User can view food items list only after logging in 
+  - User can add different food items to cart and can remove any or all item from cart
   - Once payment is done order is confirmed and user can see latest status of order in my orders page  
   
 
@@ -42,15 +42,15 @@ Select Net Banking -> select any Bank -> click on Pay button -> click on success
   - ExpressJS
   - NodeJS
   - MongoDB and MongoDB ChangeStream
-  - Socket.io - for Push Notification
-  - RazorPay Payment Gateway for Payment Integration - Sharable Payments Link is used
+  - Socket.io - for payment notification
+  - RazorPay Payment Gateway for Payment Integration
 
 ## ScreenShots
 - Homepage / Login Page
 ![Homepage](/ScreenShots/Home.JPG "Homepage")
 
-- foodZones List 
-![foodZones List ](/ScreenShots/foodZoneList.JPG "foodZones List ")
+- food items List 
+![food items List ](/ScreenShots/FoodItemList.JPG "food items List ")
 
 - Customer Orders Page
 ![Customer Orders Page](/ScreenShots/CustomerOrdersPage.JPG "Customer Orders Page")
@@ -62,7 +62,7 @@ Select Net Banking -> select any Bank -> click on Pay button -> click on success
 ![Payment](/ScreenShots/Payment.JPG "Payment")
 
 - Admin Add foodZone 
-![Add foodZone ](/ScreenShots/AddfoodZone.JPG "Add foodZone ")
+![Add food items ](/ScreenShots/AddfoodItems.JPG "Add food item ")
 
 - Admin Pending Orders View
 ![Admin Pending Orders](/ScreenShots/AdminPendingOrders.JPG "Admin Pending Orders")
